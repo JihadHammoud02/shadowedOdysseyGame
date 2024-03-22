@@ -1,0 +1,4 @@
+enum Diet{
+    CARNIVOR,
+    VEGAN
+}
