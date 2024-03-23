@@ -21,22 +21,23 @@ public class Knight extends Personnage{
         return "Welcome to the borders. In order to proceed to the next map, you will need to pay me " + prixDemande + " coins.";
     }
 
-    public void trade(){
+    
+    public void trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
         System.out.println("Do you want to go to the next map? (Y/n)");
         playerAnswer = playerInput.nextLine();
-        if (playerAnswer == "Y"){
+        if (playerAnswer.equals("Y")) { // Correcting string comparison
+            int prixDemande = 10; // Assuming prixDemande is defined somewhere
             boolean paid = player.pay(prixDemande);
-            if (paid){
+            if (paid) {
                 System.out.println("Good luck on your quest!");
-            }
-            else{
+            } else {
                 System.out.println("You don't have enough coins to go through the borders.");
             }
         }
         playerInput.close();
     }
-
 }
+

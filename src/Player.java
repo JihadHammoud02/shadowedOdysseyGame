@@ -1,7 +1,7 @@
 public class Player extends Personnage {
     private static Player instance;
     private int nbrePommes=0;
-    private int monnaie=0;
+    private int monnaie=20;
     private int nbreChauveSouris=0;
 
 
