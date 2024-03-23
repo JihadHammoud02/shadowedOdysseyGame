@@ -32,12 +32,12 @@ public class Knight extends Personnage{
             int prixDemande = 10; // Assuming prixDemande is defined somewhere
             boolean paid = player.pay(prixDemande);
             if (paid) {
-                System.out.println("Good luck on your quest!");
+                System.out.println("The money has been transferred. Good luck on your quest!");
             } else {
                 System.out.println("You don't have enough coins to go through the borders.");
             }
         }
-        playerInput.close();
+        // playerInput.close();
     }
 }
 

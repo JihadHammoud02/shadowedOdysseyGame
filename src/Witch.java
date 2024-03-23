@@ -51,7 +51,7 @@ public class Witch extends Personnage{
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
-        if(player.getnbreChauveSouris() > 0 && diet==Diet.CARNIVOR){
+        if(player.getnbreChauveSouris() > 0 && diet.equals(Diet.CARNIVOR)){
             System.out.println("I see you have a bat. I will take it for "+getchauveSourisXp()+"xp, I will not accept money (Y/n)");
             playerAnswer = playerInput.nextLine();
             if(playerAnswer.equals("Y")){
@@ -85,7 +85,7 @@ public class Witch extends Personnage{
                 }
             }    
         }
-        playerInput.close();
+        // playerInput.close();
     }
 
 }
