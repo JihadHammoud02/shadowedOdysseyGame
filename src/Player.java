@@ -1,10 +1,24 @@
 public class Player extends Personnage {
-    private String name;
-    private int nbrePommes;
-    private int Monnaie;
-    private int nbreChauveSouris=1;
+    private static Player instance;
+    private int nbrePommes=0;
+    private int monnaie=0;
+    private int nbreChauveSouris=0;
+
+
+
     public Player(String name){
         super(name);
+    }
+
+    public static Player getInstance() {
+        if (instance == null) {
+            instance = new Player("villageois");
+        }
+        return instance;
+    }
+
+    public void collectChauveSouris(){
+        nbreChauveSouris++;
     }
 
     public int getnbreChauveSouris(){
@@ -15,13 +29,29 @@ public class Player extends Personnage {
         nbreChauveSouris-=1;
     }
 
-
     public boolean pay(int cost){
-        if(cost<=Monnaie){
-            Monnaie-=cost;
-            return  true;
+        if(cost<=monnaie){
+            monnaie-=cost;
+            return true;
         }
         return false;
     }
+
+    public void getPaid(int earnings){
+        monnaie += earnings;
+    }
+
+    public void collectPomme(){
+            nbrePommes++;
+    }
+
+    public int getNbrePommes(){
+        return nbrePommes;
+    }
+
+    public void sellPommes(int pommes){
+        nbrePommes-=pommes;
+    }
+    
     
 }
