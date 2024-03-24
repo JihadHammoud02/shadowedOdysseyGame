@@ -28,8 +28,7 @@ public class Knight extends Personnage{
         String playerAnswer;
         System.out.println("Do you want to go to the next map? (Y/n)");
         playerAnswer = playerInput.nextLine();
-        if (playerAnswer.equals("Y")) { // Correcting string comparison
-            int prixDemande = 10; // Assuming prixDemande is defined somewhere
+        if (playerAnswer.equals("Y")) { 
             boolean paid = player.pay(prixDemande);
             if (paid) {
                 System.out.println("The money has been transferred. Good luck on your quest!");
