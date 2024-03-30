@@ -32,13 +32,23 @@ public class ShadowedOdysseyApp extends GameApplication {
             }
             while(i<n){
                 if(i<cheminAct.getHabitats().size()) {
+                    
+                    HabEntity habitat = new HabEntity(cheminAct.getHabitats().get(i));
+                    PersEntity personne = new PersEntity(cheminAct.getHabitats().get(i).getHabitant());
+                    
+                    
                     if (cheminAct.getHabitats().get(i).getType().equals("w")) {
                         // Spanning Witch Habitat
-                        HabEntity habitat = new HabEntity(cheminAct.getHabitats().get(i));
-                        PersEntity personne = new PersEntity(cheminAct.getHabitats().get(i).getHabitant());
                         habitat.spawnHab(i,j);
-                        personne.spawn(i,j);
+                        personne.spawn(i,j, GameEntityFactory.EntityType.WITCH);
                         ShadowedOdysseyFactory.spawnRoad(94 * (i + 2), j * 90);
+                    }
+                    else if (cheminAct.getHabitats().get(i).getType().equals("k")) {
+                        // Spanning Knight Habitat
+                        habitat.spawnHab(i, j);
+                        personne.spawn(i, j, GameEntityFactory.EntityType.KNIGHT);
+                        ShadowedOdysseyFactory.spawnRoad(94 * i,  j * 90);
+                        ShadowedOdysseyFactory.spawnRoad(94 * (i+4),  j * 90);
                     }
                 }
                 else{
@@ -65,8 +75,12 @@ public class ShadowedOdysseyApp extends GameApplication {
             Witch thisWitch = witch.getComponent(Witch.class);
             System.out.println(thisWitch.speak());
             thisWitch.trade();
+        });
 
-
+        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
+            Knight thisKnight = knight.getComponent(Knight.class);
+            System.out.println(thisKnight.speak());
+            thisKnight.trade();
         });
     }
 

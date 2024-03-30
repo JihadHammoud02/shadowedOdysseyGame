@@ -37,6 +37,9 @@ public class HabEntity{
             spawnBlocks(94 * x+46, y * 90,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
             spawnItem(94 * x, y * 90 - 40,"witch2.png", GameEntityFactory.EntityType.WITCHBARRIER);
         }
+        else if(habitat.getType().equals("k")){
+            spawnBlocks(94*(x+4), y*90-50, "knight_fence.png", GameEntityFactory.EntityType.KNIGHTFENCE);
+        }
         // Other condition if habitat was Apple buyer ( to show other entities instead)
     }
 }

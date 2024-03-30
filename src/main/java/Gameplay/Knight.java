@@ -3,10 +3,16 @@ import java.util.Scanner;
 
 public class Knight extends Personnage{
     private int prixDemande; 
+    private String imageName;
 
-    public Knight(String name, int prixDemande){
+    public Knight(String name, int prixDemande, String imageName){
         super(name);
         this.prixDemande = prixDemande;
+        this.imageName = imageName;
+    }
+
+    public String getImageName(){
+        return imageName;
     }
 
     public int getPrixDemande(){
@@ -18,11 +24,15 @@ public class Knight extends Personnage{
         return super.toString() + " and I am a knight";
     }
 
+    @Override
     public String speak(){
-        return "Welcome to the borders. In order to proceed to the next map, you will need to pay me " + prixDemande + " coins.";
+        return 
+        "|              Welcome to the borders.       |\n"+
+        "|    In order to proceed to the next map,    |\n"+
+        "|      you will need to pay me " + prixDemande + " coins.     |\n";
     }
 
-    
+    @Override
     public void trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
