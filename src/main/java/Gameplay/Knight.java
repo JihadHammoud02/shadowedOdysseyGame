@@ -1,3 +1,4 @@
+package Gameplay;
 import java.util.Scanner;
 
 public class Knight extends Personnage{

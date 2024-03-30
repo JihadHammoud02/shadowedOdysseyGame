@@ -1,3 +1,7 @@
+package Gameplay;
+
+
+
 public class Player extends Personnage {
     private static final Player instance = new Player("villageois");
     private int nbrePommes=0;
@@ -38,7 +42,7 @@ public class Player extends Personnage {
     }
 
     public void collectPomme(){
-            nbrePommes++;
+        nbrePommes++;
     }
 
     public int getNbrePommes(){
@@ -48,6 +52,6 @@ public class Player extends Personnage {
     public void sellPommes(int pommes){
         nbrePommes-=pommes;
     }
-    
-    
+
+
 }
