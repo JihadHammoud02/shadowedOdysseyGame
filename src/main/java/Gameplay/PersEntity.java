@@ -1,6 +1,9 @@
 package Gameplay;
+import javax.tools.Diagnostic.Kind;
+
 import com.almasb.fxgl.dsl.FXGL;
 import com.almasb.fxgl.entity.Entity;
+import com.almasb.fxgl.gameplay.GameDifficulty;
 
 
 public class PersEntity extends Entity{
@@ -15,14 +18,26 @@ public class PersEntity extends Entity{
         return pers;
     }
 
-    public void spawn(int x, int y){
-        Entity graphical_witch = FXGL.entityBuilder()
-                .type(GameEntityFactory.EntityType.WITCH)
-                .at( x + 30, y - 40)
+    public void spawn(int x, int y, GameEntityFactory.EntityType EntityType){
+        if (EntityType == GameEntityFactory.EntityType.WITCH){
+            Entity graphical_entity = FXGL.entityBuilder()
+            .type(EntityType)
+            .at( x + 30, y  - 40)
+            .viewWithBBox(pers.getImageName())
+            .collidable()
+            .with(pers)
+            .buildAndAttach();
+        }
+        else if (EntityType == GameEntityFactory.EntityType.KNIGHT){
+            Entity graphical_entity = FXGL.entityBuilder()
+                .type(EntityType)
+                .at((x+4) + 30, y - 60)
                 .viewWithBBox(pers.getImageName())
                 .collidable()
                 .with(pers)
                 .buildAndAttach();
+        }
+        
 
     }
 

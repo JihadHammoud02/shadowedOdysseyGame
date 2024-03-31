@@ -142,6 +142,16 @@ public class ShadowedOdysseyApp extends GameApplication {
         FXGL.addUINode(batLabel,100,10);
         FXGL.addUINode(moneyLabel,160,10);
     }
+        });
+
+        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
+            Knight thisKnight = knight.getComponent(Knight.class);
+            System.out.println(thisKnight.speak());
+            thisKnight.trade();
+        });
+    }
+
+
 
     public static void main(String[] args) {
         launch(args);
