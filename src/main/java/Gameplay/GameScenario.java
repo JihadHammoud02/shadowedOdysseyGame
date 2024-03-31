@@ -25,18 +25,17 @@ public class GameScenario {
 
         habitat1 = new Habitat("Semoua's store",witch1,"w");
         habitat2 = new Habitat("Jezz's store",witch2,"w");
-        habitat3 = new Habitat("Semosua's store",witch1,"w");
-        habitat4 = new Habitat("Jezsz's store",witch2,"w");
+
 
         chemin1= new Chemin(0,0);
         chemin2= new Chemin(0,0);
-        chemin3= new Chemin(0,0);
+        chemin3= new Chemin(1,0);
         chemin4= new Chemin(0,0);
-        chemin5= new Chemin(0,0);
+        chemin5= new Chemin(0,8);
 
         chemin2.addHabitats(habitat1);
-        chemin2.addHabitats(habitat3);
         chemin4.addHabitats(habitat2);
+
 
         map =  new Carte("lvl1");
 

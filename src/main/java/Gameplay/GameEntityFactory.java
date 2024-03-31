@@ -16,7 +16,7 @@ import static com.almasb.fxgl.dsl.FXGL.onKey;
 public class GameEntityFactory implements EntityFactory {
 
     public enum EntityType {
-        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER
+        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT
     }
     public Map<Entity, Personnage> binding = new HashMap<Entity,Personnage>();
 
@@ -53,6 +53,10 @@ public class GameEntityFactory implements EntityFactory {
         onKey(KeyCode.DOWN , ()->{
             if(player.getY() < 416)player.translateY(1);
         });
+
+        onKey(KeyCode.A,()->{
+            System.out.println(ply.getNbrePommes());
+        });
     }
 
     public void spawnRoad(int x, int y){
@@ -63,5 +67,24 @@ public class GameEntityFactory implements EntityFactory {
                 .collidable()
                 .buildAndAttach();
     }
+
+    public void spawnApple(int x, int y){
+        FXGL.entityBuilder()
+                .type(EntityType.APPLE)
+                .at(x,y)
+                .viewWithBBox("Apple.png")
+                .collidable()
+                .buildAndAttach();
+    }
+
+    public void spawnBat(int x, int y){
+        FXGL.entityBuilder()
+                .type(EntityType.BAT)
+                .at(x,y)
+                .viewWithBBox("Bat.png")
+                .collidable()
+                .buildAndAttach();
+    }
+
 
 }

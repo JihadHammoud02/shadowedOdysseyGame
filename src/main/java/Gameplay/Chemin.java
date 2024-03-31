@@ -32,5 +32,12 @@ public class Chemin {
         return length;
     }
 
+    public int getNbrePommes(){
+        return nbrePommes;
+    }
+    public int getNbreChauveSouris(){
+        return nbreChauveSouris;
+    }
+
 
 }

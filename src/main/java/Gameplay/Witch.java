@@ -7,6 +7,7 @@ public class Witch extends Personnage {
     private Diet diet;
     private int maxXp;
     private int prixXp;
+    private int nbreChauveSouris;
     private int chauveSourisXp;
     private String imageName;
 
@@ -17,6 +18,7 @@ public class Witch extends Personnage {
         this.prixXp=prixXp;
         this.chauveSourisXp=chauveSourisXp;
         this.imageName=imageName;
+
     }
 
     @Override
@@ -38,6 +40,10 @@ public class Witch extends Personnage {
 
     public int getchauveSourisXp(){
         return chauveSourisXp;
+    }
+
+    public int getNbreChauveSouris(){
+        return nbreChauveSouris;
     }
 
     public String getImageName() { return imageName; }
@@ -90,6 +96,7 @@ public class Witch extends Personnage {
                 if (playerAnswer.equals("Y")) {
                     player.echangerChauveSouris();
                     this.maxXp -= chauveSourisXp;
+                    nbreChauveSouris++;
                     System.out.println("bat<---\n--->" + chauveSourisXp + "xp");
                 }
             } else {

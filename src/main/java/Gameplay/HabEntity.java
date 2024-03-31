@@ -33,9 +33,9 @@ public class HabEntity{
 
     public void spawnHab(int x, int y){
         if(habitat.getType().equals("w")){
-            spawnBlocks(94 * x, y * 90,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
-            spawnBlocks(94 * x+46, y * 90,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
-            spawnItem(94 * x, y * 90 - 40,"witch2.png", GameEntityFactory.EntityType.WITCHBARRIER);
+            spawnBlocks( x, y ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
+            spawnBlocks( x+46, y ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
+            spawnItem( x, y- 40,"witch2.png", GameEntityFactory.EntityType.WITCHBARRIER);
         }
         // Other condition if habitat was Apple buyer ( to show other entities instead)
     }

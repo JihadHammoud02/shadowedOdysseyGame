@@ -18,7 +18,7 @@ public class PersEntity extends Entity{
     public void spawn(int x, int y){
         Entity graphical_witch = FXGL.entityBuilder()
                 .type(GameEntityFactory.EntityType.WITCH)
-                .at(94 * x + 30, y * 90 - 40)
+                .at( x + 30, y - 40)
                 .viewWithBBox(pers.getImageName())
                 .collidable()
                 .with(pers)
