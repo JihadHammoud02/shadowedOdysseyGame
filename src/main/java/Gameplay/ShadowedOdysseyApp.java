@@ -59,8 +59,14 @@ public class ShadowedOdysseyApp extends GameApplication {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
                     habEntity.spawnHab(abssice, (i + 1) * 90);
-                    pers.spawn(abssice, (i + 1) * 90);
-
+                    pers.spawn(abssice, (i + 1) * 90, GameEntityFactory.EntityType.WITCH);
+                }
+                if (hab.getType().equals("k")) {
+                    HabEntity habEntity = new HabEntity(hab);
+                    PersEntity pers = new PersEntity(hab.getHabitant());
+                    habEntity.spawnHab(j, i);
+                    pers.spawn(j, i , GameEntityFactory.EntityType.KNIGHT);
+                    ShadowedOdysseyFactory.spawnRoad(94 * (i+4), (j+1) * 90);
                 }
 
             }
@@ -99,6 +105,14 @@ public class ShadowedOdysseyApp extends GameApplication {
             if(thisWitch.getNbreChauveSouris() == 1){
                 FXGL.inc("Bat",-1);
             }
+        });
+
+    
+
+        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
+            Knight thisKnight = knight.getComponent(Knight.class);
+            System.out.println(thisKnight.speak());
+            thisKnight.trade();
         });
 
         onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLE, (Entity player, Entity apple) -> {
@@ -142,14 +156,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         FXGL.addUINode(batLabel,100,10);
         FXGL.addUINode(moneyLabel,160,10);
     }
-        });
-
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
-            Knight thisKnight = knight.getComponent(Knight.class);
-            System.out.println(thisKnight.speak());
-            thisKnight.trade();
-        });
-    }
+        
 
 
 

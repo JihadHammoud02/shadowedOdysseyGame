@@ -81,7 +81,7 @@ public class GameEntityFactory implements EntityFactory {
         FXGL.entityBuilder()
                 .type(EntityType.BAT)
                 .at(x,y)
-                .viewWithBBox("Bat.png")
+                .viewWithBBox("bat.png")
                 .collidable()
                 .buildAndAttach();
     }
