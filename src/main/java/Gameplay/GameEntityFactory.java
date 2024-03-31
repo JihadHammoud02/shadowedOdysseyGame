@@ -46,6 +46,7 @@ public class GameEntityFactory implements EntityFactory {
                 player.getComponent(AnimationComponent.class).moveRight();
             }
         }
+
         );
         onKey(KeyCode.UP , ()->{
             player.translateY(-1);
