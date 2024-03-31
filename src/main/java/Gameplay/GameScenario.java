@@ -6,7 +6,9 @@ public class GameScenario {
     private Witch witch2;
     private Witch witch3;
     private Witch witch4;
-    private Knight knight; 
+    private Knight knight;
+
+    private AppleBuyer buyer;
 
     private Habitat habitat1;
     private Habitat habitat2;

@@ -12,7 +12,7 @@ public abstract  class  Personnage  extends Component {
     }
 
     public String getImageName(){ return imageName;}
-
+    public String getName(){ return name;}
     public String toString() {
         return "My name is "+name;
     }

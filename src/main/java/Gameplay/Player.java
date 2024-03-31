@@ -49,8 +49,13 @@ public class Player extends Personnage {
         return nbrePommes;
     }
 
-    public void sellPommes(int pommes){
+    public int sellPommes(int pommes){
+        if( pommes > nbrePommes) {
+            System.out.println("player doesn't have this much of apples");
+            return -1;
+        }
         nbrePommes-=pommes;
+        return 0;
     }
 
 
