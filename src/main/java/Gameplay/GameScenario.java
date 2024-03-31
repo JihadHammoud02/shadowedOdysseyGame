@@ -41,14 +41,14 @@ public class GameScenario {
 
         chemin1= new Chemin(0,0);
         chemin2= new Chemin(0,0);
-        chemin3= new Chemin(0,0);
+        chemin3= new Chemin(1,0);
         chemin4= new Chemin(0,0);
-        chemin5= new Chemin(0,0);
+        chemin5= new Chemin(0,8);
         
         chemin1.addHabitats(habitat5);
         chemin2.addHabitats(habitat1);
-        chemin2.addHabitats(habitat3);
         chemin4.addHabitats(habitat2);
+
         
 
 

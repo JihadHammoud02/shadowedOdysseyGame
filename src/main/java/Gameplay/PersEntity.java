@@ -22,7 +22,7 @@ public class PersEntity extends Entity{
         if (EntityType == GameEntityFactory.EntityType.WITCH){
             Entity graphical_entity = FXGL.entityBuilder()
             .type(EntityType)
-            .at(94 * x + 30, y * 90 - 40)
+            .at( x + 30, y  - 40)
             .viewWithBBox(pers.getImageName())
             .collidable()
             .with(pers)
@@ -31,7 +31,7 @@ public class PersEntity extends Entity{
         else if (EntityType == GameEntityFactory.EntityType.KNIGHT){
             Entity graphical_entity = FXGL.entityBuilder()
                 .type(EntityType)
-                .at(94 * (x+4) + 30, y * 90 - 60)
+                .at((x+4)*90, (y * 90)+30)
                 .viewWithBBox(pers.getImageName())
                 .collidable()
                 .with(pers)
