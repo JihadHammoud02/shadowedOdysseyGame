@@ -16,7 +16,7 @@ import static com.almasb.fxgl.dsl.FXGL.onKey;
 public class GameEntityFactory implements EntityFactory {
 
     public enum EntityType {
-        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT,KNIGHT,KNIGHTFENCE
+        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT,KNIGHT,KNIGHTFENCE,APPLEBUYERZONE, APPLEBUYER
     }
     public Map<Entity, Personnage> binding = new HashMap<Entity,Personnage>();
 

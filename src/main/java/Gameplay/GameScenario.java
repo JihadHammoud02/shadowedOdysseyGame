@@ -33,10 +33,14 @@ public class GameScenario {
         witch4= new Witch("Lola", Diet.CARNIVOR, 35, 18, 25, "witch.png");
         knight= new Knight("Samir", 10, "knight.png");
 
+        buyer = new AppleBuyer("bob", 15, 5,"idle.gif");
+
         habitat1 = new Habitat("Semoua's store",witch1,"w");
-        habitat2 = new Habitat("Jezz's store",witch2,"w");
-        habitat3 = new Habitat("Marta's store",witch3,"w");
-        habitat4 = new Habitat("Lola's store",witch4,"w");
+
+        habitat2 = new Habitat("bob's store",buyer,"b");
+
+        //habitat3 = new Habitat("Marta's store",witch3,"w");
+        //habitat4 = new Habitat("Lola's store",witch4,"w");
         habitat5 = new Habitat("Samir's borders", knight,"k");
 
         chemin1= new Chemin(0,0);

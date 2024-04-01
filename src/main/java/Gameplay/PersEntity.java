@@ -37,6 +37,15 @@ public class PersEntity extends Entity{
                 .with(pers)
                 .buildAndAttach();
         }
+        else if (EntityType == GameEntityFactory.EntityType.APPLEBUYER){
+            Entity graphical_entity = FXGL.entityBuilder()
+                    .type(EntityType)
+                    .at((x+4)*90, (y * 90)+30)
+                    .viewWithBBox(pers.getImageName())
+                    .collidable()
+                    .with(pers)
+                    .buildAndAttach();
+        }
         
 
     }

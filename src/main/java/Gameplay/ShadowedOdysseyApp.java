@@ -68,6 +68,12 @@ public class ShadowedOdysseyApp extends GameApplication {
                     pers.spawn(j, i , GameEntityFactory.EntityType.KNIGHT);
                     ShadowedOdysseyFactory.spawnRoad(94 * (i+4), (j+1) * 90);
                 }
+                if (hab.getType().equals("b")) {
+                    HabEntity habEntity = new HabEntity(hab);
+                    PersEntity pers = new PersEntity(hab.getHabitant());
+                    habEntity.spawnHab(j, i);
+                    habEntity.spawnHab(abssice, (i + 1) * 90);
+                    pers.spawn(abssice, (i + 1) * 90, GameEntityFactory.EntityType.APPLEBUYERZONE);                }
 
             }
             addItems(cheminAct,(i+1)*90 -21,"Apple");
@@ -115,6 +121,7 @@ public class ShadowedOdysseyApp extends GameApplication {
             thisKnight.trade();
         });
 
+
         onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLE, (Entity player, Entity apple) -> {
             Player mainPlayer= player.getComponent(Player.class);
             apple.removeFromWorld();
@@ -128,6 +135,13 @@ public class ShadowedOdysseyApp extends GameApplication {
             mainPlayer.collectChauveSouris();
             FXGL.inc("Bat",1);
 
+        });
+
+
+        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLEBUYER, (Entity player, Entity buyer) -> {
+            AppleBuyer buy = buyer.getComponent(AppleBuyer.class);
+            System.out.println(buy.speak());
+            buy.trade();
         });
     }
 
@@ -149,9 +163,9 @@ public class ShadowedOdysseyApp extends GameApplication {
         appleLabel.setFont(Font.font(20.0));
         batLabel.setFont(Font.font(20.0));
         moneyLabel.setFont(Font.font(20.0));
-        appleLabel.textProperty().bind(FXGL.getip("Apple").asString("Apple: %d"));
-        batLabel.textProperty().bind(FXGL.getip("Bat").asString("Bat: %d"));
-        moneyLabel.textProperty().bind(FXGL.getip("Money").asString("Money: %d"));
+        appleLabel.textProperty().bind(FXGL.getip("Apple").asString(" Apple: %d "));
+        batLabel.textProperty().bind(FXGL.getip("Bat").asString(" Bat: %d "));
+        moneyLabel.textProperty().bind(FXGL.getip("Money").asString(" Money: %d "));
         FXGL.addUINode(appleLabel, 20, 10);
         FXGL.addUINode(batLabel,100,10);
         FXGL.addUINode(moneyLabel,160,10);

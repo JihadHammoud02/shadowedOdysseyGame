@@ -94,7 +94,7 @@ public class AppleBuyer extends  Personnage {
         return sb.toString();
     }
 
-    public void exchangeApples() {
+    public void trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
