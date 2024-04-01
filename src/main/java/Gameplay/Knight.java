@@ -11,6 +11,7 @@ public class Knight extends Personnage{
         this.imageName = imageName;
     }
 
+    @Override
     public String getImageName(){
         return imageName;
     }

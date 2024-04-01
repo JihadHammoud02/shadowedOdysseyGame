@@ -46,6 +46,7 @@ public class Witch extends Personnage {
         return nbreChauveSouris;
     }
 
+    @Override
     public String getImageName() { return imageName; }
 
     @Override

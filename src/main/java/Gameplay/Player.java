@@ -17,6 +17,11 @@ public class Player extends Personnage {
         return instance;
     }
 
+    @Override
+    public String getImageName(){
+        return "";
+    }
+
     public void collectChauveSouris(){
         nbreChauveSouris++;
     }
