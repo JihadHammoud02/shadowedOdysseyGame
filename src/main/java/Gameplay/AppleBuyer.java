@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class AppleBuyer extends  Personnage {
     // Attributes
     private int maxQuantity;
-    private double applePrice;
+    private int applePrice;
     private int currentQuantity;
     private int restQuantity;
 
@@ -13,7 +13,7 @@ public class AppleBuyer extends  Personnage {
     private String imageName;
 
     // Constructor
-    public AppleBuyer(String name, int maxQuantity, double PricePerApple, String imageName) {
+    public AppleBuyer(String name, int maxQuantity, int PricePerApple, String imageName) {
         super(name);
         this.maxQuantity = maxQuantity;
         this.applePrice = PricePerApple;
@@ -36,7 +36,7 @@ public class AppleBuyer extends  Personnage {
         this.imageName = imageName;
     }
 
-    public double getApplePrice() {
+    public int getApplePrice() {
         return applePrice;
     }
 
@@ -94,7 +94,7 @@ public class AppleBuyer extends  Personnage {
         return sb.toString();
     }
 
-    public void trade() {
+    public boolean  trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
@@ -114,11 +114,12 @@ public class AppleBuyer extends  Personnage {
                         System.out.print("Invalid input. Please enter a valid integer: ");
                     }
                     if (nbr <= getRestQuantity() && nbr > -1) {
-                        int ret = player.sellPommes(nbr);
+                        int ret = player.sellPommes(nbr,getApplePrice());
                         if (ret == 0) {
                             ret = buyApples(nbr);
                             if (ret == 0) {
                                 System.out.println("Successfully bought");
+                                return true;
                             } else {
                                 System.out.println("Failed to complete the purchase.");
                             }
@@ -135,6 +136,7 @@ public class AppleBuyer extends  Personnage {
         } else {
             System.out.println("Invalid input. Please enter 'Y' or 'n'.");
         }
+        return false;
     }
 
 

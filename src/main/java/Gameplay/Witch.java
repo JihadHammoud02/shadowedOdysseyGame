@@ -62,7 +62,7 @@ public class Witch extends Personnage {
 
         // Add text content
         sb.append("│ Welcome to my store, here is what I offer: │\n");
-        sb.append("│ 10xp --> ").append(getPrixXp()).append(" coins               │\n");
+        sb.append("│ 1xp --> ").append(getPrixXp()).append(" coins               │\n");
         sb.append("│ I have ").append(getmaxXp()).append("xp to give                        │\n");
 
         // Add diet information
@@ -84,7 +84,7 @@ public class Witch extends Personnage {
 
 
     @Override
-    public void trade() {
+    public boolean trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
@@ -98,7 +98,9 @@ public class Witch extends Personnage {
                     player.echangerChauveSouris();
                     this.maxXp -= chauveSourisXp;
                     nbreChauveSouris++;
+                    player.incrWifeLife(chauveSourisXp);
                     System.out.println("bat<---\n--->" + chauveSourisXp + "xp");
+                    return true;
                 }
             } else {
                 System.out.println("Please choose how much xp you want me to give you");
@@ -117,13 +119,18 @@ public class Witch extends Personnage {
                 if (playerAnswer.equals("Y")) {
                     if (player.pay(bill)) {
                         maxXp -= xp;
+                        player.incrWifeLife(xp);
                         System.out.println("Successfully bought");
+                        return true;
                     } else {
                         System.out.println("Sorry you don't have enough money");
                     }
                 }
+                
             }
+            
         }
+        return false;
     }
 
 }

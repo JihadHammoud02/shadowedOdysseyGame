@@ -8,17 +8,14 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 import javafx.scene.input.KeyCode;
 
-import java.util.HashMap;
-import java.util.Map;
 
 import static com.almasb.fxgl.dsl.FXGL.onKey;
 
 public class GameEntityFactory implements EntityFactory {
 
     public enum EntityType {
-        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT,KNIGHT,KNIGHTFENCE,APPLEBUYERZONE, APPLEBUYER
+        PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT,KNIGHT,KNIGHTFENCE,APPLEBUYERZONE,APPLEBUYER
     }
-    public Map<Entity, Personnage> binding = new HashMap<Entity,Personnage>();
 
     // add a function that takes an Entity as a parameter and build the right player
     // Function that create the Player
@@ -55,9 +52,6 @@ public class GameEntityFactory implements EntityFactory {
             if(player.getY() < 416)player.translateY(1);
         });
 
-        onKey(KeyCode.A,()->{
-            System.out.println(ply.getNbrePommes());
-        });
     }
 
     public void spawnRoad(int x, int y){

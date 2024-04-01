@@ -34,7 +34,7 @@ public class Knight extends Personnage{
     }
 
     @Override
-    public void trade() {
+    public boolean trade() {
         Player player = Player.getInstance();
         Scanner playerInput = new Scanner(System.in);
         String playerAnswer;
@@ -44,11 +44,11 @@ public class Knight extends Personnage{
             boolean paid = player.pay(prixDemande);
             if (paid) {
                 System.out.println("The money has been transferred. Good luck on your quest!");
-            } else {
-                System.out.println("You don't have enough coins to go through the borders.");
+                return true;
             }
+            System.out.println("You don't have enough coins to go through the borders.");
         }
-        // playerInput.close();
+        return false;
     }
 }
 

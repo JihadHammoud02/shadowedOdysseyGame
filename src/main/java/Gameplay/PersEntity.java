@@ -14,6 +14,12 @@ public class PersEntity extends Entity{
         this.pers=pers;
     }
 
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return pers.toString();
+    }
+
     public Personnage getPers(){
         return pers;
     }
@@ -22,7 +28,7 @@ public class PersEntity extends Entity{
         if (EntityType == GameEntityFactory.EntityType.WITCH){
             Entity graphical_entity = FXGL.entityBuilder()
             .type(EntityType)
-            .at( x + 30, y  - 40)
+            .at( x + 30, y*90  - 40)
             .viewWithBBox(pers.getImageName())
             .collidable()
             .with(pers)
@@ -40,11 +46,12 @@ public class PersEntity extends Entity{
         else if (EntityType == GameEntityFactory.EntityType.APPLEBUYER){
             Entity graphical_entity = FXGL.entityBuilder()
                     .type(EntityType)
-                    .at((x+4)*90, (y * 90)+30)
+                    .at(x+4, (y*90)+60)
                     .viewWithBBox(pers.getImageName())
                     .collidable()
                     .with(pers)
                     .buildAndAttach();
+
         }
         
 

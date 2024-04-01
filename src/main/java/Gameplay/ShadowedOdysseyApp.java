@@ -12,8 +12,9 @@ import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.almasb.fxgl.dsl.FXGL.onCollisionBegin;
-import static com.almasb.fxgl.dsl.FXGLForKtKt.*;
+import javafx.util.Duration;
+
+import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class ShadowedOdysseyApp extends GameApplication {
     private final GameEntityFactory ShadowedOdysseyFactory = new GameEntityFactory();
@@ -22,6 +23,16 @@ public class ShadowedOdysseyApp extends GameApplication {
 
     @Override
     protected  void initGame(){
+
+        run(()->{
+            FXGL.inc("SpouseLife", -1);
+            player.incrWifeLife(-1);
+            if(player.getWifeLife() == 0){
+                FXGL.getDialogService().showMessageBox("Game Over",()->{FXGL.getGameController().exit();});
+            }
+    },Duration.seconds(1));
+
+
         getGameWorld().addEntityFactory(ShadowedOdysseyFactory);
         ShadowedOdysseyFactory.spawnPlayer(player);
         GameScenario mygame = new GameScenario();
@@ -58,8 +69,8 @@ public class ShadowedOdysseyApp extends GameApplication {
                 if (hab.getType().equals("w")) {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
-                    habEntity.spawnHab(abssice, (i + 1) * 90);
-                    pers.spawn(abssice, (i + 1) * 90, GameEntityFactory.EntityType.WITCH);
+                    habEntity.spawnHab(abssice, (i + 1));
+                    pers.spawn(abssice, i + 1, GameEntityFactory.EntityType.WITCH);
                 }
                 if (hab.getType().equals("k")) {
                     HabEntity habEntity = new HabEntity(hab);
@@ -71,9 +82,8 @@ public class ShadowedOdysseyApp extends GameApplication {
                 if (hab.getType().equals("b")) {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
-                    habEntity.spawnHab(j, i);
-                    habEntity.spawnHab(abssice, (i + 1) * 90);
-                    pers.spawn(abssice, (i + 1) * 90, GameEntityFactory.EntityType.APPLEBUYERZONE);                }
+                    habEntity.spawnHab(abssice, i);
+                    pers.spawn(abssice,i, GameEntityFactory.EntityType.APPLEBUYER);                }
 
             }
             addItems(cheminAct,(i+1)*90 -21,"Apple");
@@ -99,6 +109,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         settings.setTitle("ShadowedOdyssey");
         settings.setWidth(470);
         settings.setHeight(480);
+        settings.setMainMenuEnabled(true);
     }
 
     @Override
@@ -106,9 +117,12 @@ public class ShadowedOdysseyApp extends GameApplication {
         onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.WITCH, (Entity player, Entity witch) -> {
             Witch thisWitch = witch.getComponent(Witch.class);
             System.out.println(thisWitch.speak());
+            Player mainPlayer= player.getComponent(Player.class);
+            int number_of_chauve_souris_before = mainPlayer.getnbreChauveSouris();
+            int spouse_xp = mainPlayer.getWifeLife();
             thisWitch.trade();
-            System.out.println(thisWitch.getNbreChauveSouris());
-            if(thisWitch.getNbreChauveSouris() == 1){
+            FXGL.inc("SpouseLife", mainPlayer.getWifeLife()-spouse_xp);
+            if(thisWitch.getNbreChauveSouris() == 1 && number_of_chauve_souris_before == 1){
                 FXGL.inc("Bat",-1);
             }
         });
@@ -118,7 +132,10 @@ public class ShadowedOdysseyApp extends GameApplication {
         onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
             Knight thisKnight = knight.getComponent(Knight.class);
             System.out.println(thisKnight.speak());
-            thisKnight.trade();
+            boolean passed = thisKnight.trade();
+            if(passed){
+                FXGL.getDialogService().showMessageBox("Game Won",()->{FXGL.getGameController().exit();});
+            }
         });
 
 
@@ -140,8 +157,12 @@ public class ShadowedOdysseyApp extends GameApplication {
 
         onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLEBUYER, (Entity player, Entity buyer) -> {
             AppleBuyer buy = buyer.getComponent(AppleBuyer.class);
-            System.out.println(buy.speak());
-            buy.trade();
+            Player mainPlayer= player.getComponent(Player.class);
+            int apples_before_trade = mainPlayer.getNbrePommes();
+            int money_before_trade = mainPlayer.getMoney();
+            boolean traded = buy.trade();
+            FXGL.inc("Apple",mainPlayer.getNbrePommes()-apples_before_trade);
+            FXGL.inc("Money", money_before_trade + (apples_before_trade-mainPlayer.getNbrePommes())*buy.getApplePrice());
         });
     }
 
@@ -150,6 +171,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         vars.put("Apple", 0);
         vars.put("Bat",0);
         vars.put("Money",0);
+        vars.put("SpouseLife",player.getWifeLife());
     }
 
     @Override
@@ -157,18 +179,23 @@ public class ShadowedOdysseyApp extends GameApplication {
         Label appleLabel = new Label();
         Label batLabel = new Label();
         Label moneyLabel = new Label();
+        Label spouseLife = new Label();
         appleLabel.setTextFill(Color.RED);
         batLabel.setTextFill(Color.GRAY);
         moneyLabel.setTextFill(Color.GREEN);
+        spouseLife.setTextFill(Color.PINK);
         appleLabel.setFont(Font.font(20.0));
         batLabel.setFont(Font.font(20.0));
         moneyLabel.setFont(Font.font(20.0));
+        spouseLife.setFont(Font.font(20.0));
         appleLabel.textProperty().bind(FXGL.getip("Apple").asString(" Apple: %d "));
         batLabel.textProperty().bind(FXGL.getip("Bat").asString(" Bat: %d "));
         moneyLabel.textProperty().bind(FXGL.getip("Money").asString(" Money: %d "));
+        spouseLife.textProperty().bind(FXGL.getip("SpouseLife").asString(" Spouse life: %d "));
         FXGL.addUINode(appleLabel, 20, 10);
         FXGL.addUINode(batLabel,100,10);
         FXGL.addUINode(moneyLabel,160,10);
+        FXGL.addUINode(spouseLife,270,10);
     }
         
 

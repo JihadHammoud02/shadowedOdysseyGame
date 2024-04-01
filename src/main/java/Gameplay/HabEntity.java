@@ -33,16 +33,14 @@ public class HabEntity{
 
     public void spawnHab(int x, int y){
         if(habitat.getType().equals("w")){
-            spawnBlocks( x, y ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
-            spawnBlocks( x+46, y ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
-            spawnItem( x, y- 40,"witch2.png", GameEntityFactory.EntityType.WITCHBARRIER);
+            spawnBlocks( x, y*90 ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
+            spawnBlocks( x+46, y*90 ,"witchZone.png", GameEntityFactory.EntityType.WITCHZONE);
+            spawnItem( x, y*90- 40,"witch2.png", GameEntityFactory.EntityType.WITCHBARRIER);
         }else if(habitat.getType().equals("k")){
             spawnBlocks(94*(x+4), (y*90)+50, "knight_fence.png", GameEntityFactory.EntityType.KNIGHTFENCE);
         } else if(habitat.getType().equals("b")) {
-            spawnBlocks( x-20, y-70 ,"house3.png", GameEntityFactory.EntityType.APPLEBUYERZONE);
-            spawnItem( x, y- 40,"idle.gif", GameEntityFactory.EntityType.APPLEBUYER);
+            spawnBlocks( x-20, y*90+30 ,"house3.png", GameEntityFactory.EntityType.APPLEBUYERZONE);
 
         }
-        // Other condition if habitat was Apple buyer ( to show other entities instead)
     }
 }

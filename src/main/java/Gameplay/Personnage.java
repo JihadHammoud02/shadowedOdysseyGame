@@ -22,7 +22,7 @@ public abstract  class  Personnage  extends Component {
         return "";
     }
 
-    public void trade(){ /* to be overriden */}
+    public abstract boolean trade();
 
 
     }
