@@ -1,6 +1,10 @@
 package Model;
 
-public class GameScenario {
+import Model.Habitat.type;
+
+public class GameLevel {
+
+    // Creating components of  the level
     private Witch witch1;
     private Knight knight;
 
@@ -18,9 +22,9 @@ public class GameScenario {
     private Chemin chemin5;
 
     private Carte map;
-    private Player player;
 
-    public Carte returnMap(){
+    
+    public Carte returnMapLevel1(){
         witch1= new Witch("Semoua", Diet.CARNIVOR,120,10,30,"witch.png");
         knight= new Knight("Samir", 10, "knight.png");
         buyer = new AppleBuyer("bob", 15, 5,"idle.gif");
@@ -53,7 +57,4 @@ public class GameScenario {
         return map;
     }
 
-    public Player getPlayer(){
-        return player;
-    }
 }

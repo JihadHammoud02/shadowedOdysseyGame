@@ -10,7 +10,7 @@ import Model.Personnage;
 import static com.almasb.fxgl.dsl.FXGL.onKey;
 import javafx.scene.input.KeyCode;
 
-public class PersEntity extends Entity{
+public class PersEntity {
 
     private Personnage pers;
 
