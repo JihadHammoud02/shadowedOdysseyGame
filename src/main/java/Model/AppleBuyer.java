@@ -25,15 +25,10 @@ public class AppleBuyer extends  Personnage {
         return super.toString() + " and I am a AppleBuyer";
     }
 
-    ;
 
     @Override
     public String getImageName() {
         return imageName;
-    }
-
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
     }
 
     public int getApplePrice() {
@@ -48,16 +43,9 @@ public class AppleBuyer extends  Personnage {
         return super.getName();
     }
 
-    public int MaxAppleQuantity() {
-        return maxQuantity;
-    }
 
     public int getCurrentAppleQuantity() {
         return currentQuantity;
-    }
-
-    public void setMaxQuantity(int maxQuantity) {
-        this.maxQuantity = maxQuantity;
     }
 
     public int getRestQuantity() {
