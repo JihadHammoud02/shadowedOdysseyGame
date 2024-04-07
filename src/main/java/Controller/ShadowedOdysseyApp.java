@@ -178,6 +178,19 @@ public class ShadowedOdysseyApp extends GameApplication {
             FXGL.inc("Apple",mainPlayer.getNbrePommes()-apples_before_trade);
             FXGL.inc("Money", money_before_trade + (apples_before_trade-mainPlayer.getNbrePommes())*buy.getApplePrice());
         });
+
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.ROAD, (Entity player, Entity road) -> {
+            Player mainPlayer= player.getComponent(Player.class);
+            mainPlayer.setCanMove(false);
+            
+        });
+        onCollisionEnd(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.ROAD, (Entity player, Entity road) -> {
+            Player mainPlayer= player.getComponent(Player.class);
+            mainPlayer.setCanMove(false);
+            
+        });
+
+       
     }
 
     @Override
