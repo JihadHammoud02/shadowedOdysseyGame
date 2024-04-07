@@ -25,7 +25,6 @@ public class AppleBuyer extends  Personnage {
         return super.toString() + " and I am a AppleBuyer";
     }
 
-    ;
 
     @Override
     public String getImageName() {
