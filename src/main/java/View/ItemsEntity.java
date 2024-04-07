@@ -15,7 +15,7 @@ public class ItemsEntity implements EntityFactory {
     public void spawnRoad(int x, int y){
          FXGL.entityBuilder()
                 .type(EntityType.ROAD)
-                .at(x,y)
+                .at(x ,y-2)
                 .viewWithBBox("road.png")
                 .collidable()
                 .buildAndAttach();

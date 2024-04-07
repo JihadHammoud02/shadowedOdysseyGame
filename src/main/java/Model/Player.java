@@ -7,6 +7,15 @@ public class Player extends Personnage {
     private int monnaie=0;
     private int nbreChauveSouris=0;
     private int wifeLife;
+    private boolean canMove = true;
+
+    public boolean getCanMove() {
+        return this.canMove;
+    }
+
+    public void setCanMove(boolean bool) {
+        this.canMove = bool;
+    }
 
 
     private Player(String name,int wifeLife){

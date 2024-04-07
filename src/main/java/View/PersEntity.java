@@ -6,6 +6,7 @@ import com.almasb.fxgl.physics.BoundingShape;
 import com.almasb.fxgl.physics.HitBox;
 
 import Model.Personnage;
+import Model.Player;
 
 import static com.almasb.fxgl.dsl.FXGL.onKey;
 import javafx.scene.input.KeyCode;
@@ -41,24 +42,52 @@ public class PersEntity {
                 .buildAndAttach();
 
         // Key binding logic
+        Player pl = player.getComponent(Player.class);
         onKey(KeyCode.LEFT , ()->{
             if(player.getX() > 0 ) {
-                player.translateX(-2);
+                if(pl.getCanMove()) {
+                    player.translateX(-2);
+                } else {
+                    player.translateX(5);
+                    pl.setCanMove(true);
+                }
             }
+            
+
         });
 
         onKey(KeyCode.RIGHT , ()->{
-            if(player.getX() < 368) {
-                player.translateX(2);
+            if(player.getX() < 420) {
+                if(pl.getCanMove()) {
+                    player.translateX(2);
+                } else {
+                    player.translateX(-5);
+                    pl.setCanMove(true);
+                }
+                
             }
         }
 
         );
         onKey(KeyCode.UP , ()->{
-            player.translateY(-1);
+            if(player.getY() >0 ) {
+                if(pl.getCanMove()) {
+                    player.translateY(-1);
+                } else {
+                    player.translateY(5);
+                    pl.setCanMove(true);
+                }
+            }
         });
         onKey(KeyCode.DOWN , ()->{
-            if(player.getY() < 416)player.translateY(1);
+            if(player.getY() < 418 ) {
+                if(pl.getCanMove()) {
+                    player.translateY(1);
+                } else {
+                    player.translateY(-5);
+                    pl.setCanMove(true);
+                }
+            }
         });
 
     }
@@ -78,7 +107,7 @@ public class PersEntity {
         else if (EntityType == ItemsEntity.EntityType.KNIGHT){
             FXGL.entityBuilder()
                 .type(EntityType)
-                .at((x+4)*90, (y * 90)+30)
+                .at((x+4)*90, (y * 90))
                 .viewWithBBox(pers.getImageName())
                 .collidable()
                 .with(pers)
