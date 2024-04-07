@@ -13,10 +13,10 @@ import Model.Habitat;
 import Model.Knight;
 import Model.Player;
 import Model.Witch;
-import View.GameEntityFactory;
+import View.ItemsEntity;
 import View.HabEntity;
 import View.PersEntity;
-import View.GameEntityFactory.EntityType;
+import View.ItemsEntity.EntityType;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -30,7 +30,7 @@ import javafx.util.Duration;
 import static com.almasb.fxgl.dsl.FXGL.*;
 
 public class ShadowedOdysseyApp extends GameApplication {
-    private final GameEntityFactory ShadowedOdysseyFactory = new GameEntityFactory();
+    private final ItemsEntity ShadowedOdysseyFactory = new ItemsEntity();
     private Carte map;
     private Player player = Player.getInstance();
 
@@ -84,20 +84,20 @@ public class ShadowedOdysseyApp extends GameApplication {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
                     habEntity.spawnHab(abssice, (i + 1));
-                    pers.spawn(abssice, i + 1, GameEntityFactory.EntityType.WITCH);
+                    pers.spawn(abssice, i + 1, ItemsEntity.EntityType.WITCH);
                 }
                 if (hab.getType().equals("k")) {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
                     habEntity.spawnHab(j, i);
-                    pers.spawn(j, i , GameEntityFactory.EntityType.KNIGHT);
+                    pers.spawn(j, i , ItemsEntity.EntityType.KNIGHT);
                     ShadowedOdysseyFactory.spawnRoad(94 * (i+4), (j+1) * 90);
                 }
                 if (hab.getType().equals("b")) {
                     HabEntity habEntity = new HabEntity(hab);
                     PersEntity pers = new PersEntity(hab.getHabitant());
                     habEntity.spawnHab(abssice, i);
-                    pers.spawn(abssice,i, GameEntityFactory.EntityType.APPLEBUYER);                }
+                    pers.spawn(abssice,i, ItemsEntity.EntityType.APPLEBUYER);                }
 
             }
             addItems(cheminAct,(i+1)*90 -21,"Apple");
@@ -128,7 +128,7 @@ public class ShadowedOdysseyApp extends GameApplication {
 
     @Override
     protected void initPhysics() {
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.WITCH, (Entity player, Entity witch) -> {
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.WITCH, (Entity player, Entity witch) -> {
             Witch thisWitch = witch.getComponent(Witch.class);
             System.out.println(thisWitch.speak());
             Player mainPlayer= player.getComponent(Player.class);
@@ -143,7 +143,7 @@ public class ShadowedOdysseyApp extends GameApplication {
 
     
 
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.KNIGHT, (Entity player, Entity knight) -> {
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.KNIGHT, (Entity player, Entity knight) -> {
             Knight thisKnight = knight.getComponent(Knight.class);
             System.out.println(thisKnight.speak());
             boolean passed = thisKnight.trade();
@@ -153,14 +153,14 @@ public class ShadowedOdysseyApp extends GameApplication {
         });
 
 
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLE, (Entity player, Entity apple) -> {
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.APPLE, (Entity player, Entity apple) -> {
             Player mainPlayer= player.getComponent(Player.class);
             apple.removeFromWorld();
             mainPlayer.collectPomme();
             FXGL.inc("Apple",1);
         });
 
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.BAT, (Entity player, Entity bat) -> {
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.BAT, (Entity player, Entity bat) -> {
             Player mainPlayer= player.getComponent(Player.class);
             bat.removeFromWorld();
             mainPlayer.collectChauveSouris();
@@ -169,7 +169,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         });
 
 
-        onCollisionBegin(GameEntityFactory.EntityType.PLAYER, GameEntityFactory.EntityType.APPLEBUYER, (Entity player, Entity buyer) -> {
+        onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.APPLEBUYER, (Entity player, Entity buyer) -> {
             AppleBuyer buy = buyer.getComponent(AppleBuyer.class);
             Player mainPlayer= player.getComponent(Player.class);
             int apples_before_trade = mainPlayer.getNbrePommes();
