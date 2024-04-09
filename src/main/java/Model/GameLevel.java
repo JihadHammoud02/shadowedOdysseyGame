@@ -1,6 +1,5 @@
 package Model;
 
-import Model.Habitat.type;
 
 public class GameLevel {
 
