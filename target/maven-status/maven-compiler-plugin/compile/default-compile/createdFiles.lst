@@ -1,0 +1,15 @@
+View\PersEntity.class
+Model\Carte.class
+View\HabEntity.class
+Model\Diet.class
+Controller\ShadowedOdysseyApp.class
+Model\Knight.class
+View\ItemsEntity.class
+Model\Player.class
+Model\Witch.class
+Controller\GameLevel.class
+Model\Chemin.class
+View\ItemsEntity$EntityType.class
+Model\Habitat.class
+Model\AppleBuyer.class
+Model\Personnage.class
