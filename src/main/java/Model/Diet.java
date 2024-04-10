@@ -1,6 +1,6 @@
 package Model;
 
-enum Diet{
+public enum Diet{
     CARNIVOR,
     VEGAN
 }

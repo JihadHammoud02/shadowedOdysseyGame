@@ -22,6 +22,7 @@ public abstract  class  Personnage  extends Component {
         return "";
     }
 
+    // method to be overriden by each npc , specifying the trade logic
     public abstract boolean trade();
 
 

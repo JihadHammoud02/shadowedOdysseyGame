@@ -2,6 +2,7 @@ package Model;
 
 
 public class Player extends Personnage {
+    // Specifying wife life while creating the player instance
     private static final Player instance = new Player("villageois",60);
     private int nbrePommes=0;
     private int monnaie=0;

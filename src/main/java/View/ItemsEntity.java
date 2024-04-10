@@ -11,6 +11,7 @@ public class ItemsEntity implements EntityFactory {
         PLAYER,ROAD,WITCHZONE,WITCH,WITCHBARRIER,APPLE,BAT,KNIGHT,KNIGHTFENCE,APPLEBUYERZONE,APPLEBUYER
     }
 
+     // Functions responsible of spawning blocks
 
     public void spawnRoad(int x, int y){
          FXGL.entityBuilder()

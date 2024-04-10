@@ -8,7 +8,6 @@ import com.almasb.fxgl.entity.Entity;
 import Model.AppleBuyer;
 import Model.Carte;
 import Model.Chemin;
-import Model.GameLevel;
 import Model.Habitat;
 import Model.Knight;
 import Model.Player;
@@ -44,9 +43,11 @@ public class ShadowedOdysseyApp extends GameApplication {
 
 
 
+    // Method responible of game Init
     @Override
     protected  void initGame(){
 
+        // Wife life decrementation by seconds
         run(()->{
             FXGL.inc("SpouseLife", -1);
             player.incrWifeLife(-1);
@@ -57,7 +58,7 @@ public class ShadowedOdysseyApp extends GameApplication {
 
 
 
-
+        // Drawing the map
         PersEntity playerEntity = new PersEntity(player);
         
         playerEntity.spawn(0, 416, EntityType.PLAYER);
@@ -87,6 +88,7 @@ public class ShadowedOdysseyApp extends GameApplication {
 
     }
 
+    // Adding Habitat and npcs to the map
     public void attachObjects(ArrayList<Chemin> chemins,int abssice ) {
         for (int i = 0; i < chemins.size(); i++) {
             Chemin cheminAct = chemins.get(i);
@@ -119,6 +121,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         }
     }
 
+    // Adding Apples and Bats to the map
     public void addItems(Chemin chemin , int y, String item){
         if(item.equals("Bat")){
             itemsEntity.spawnBat(188,y-14);
@@ -138,6 +141,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         settings.setMainMenuEnabled(true);
     }
 
+    // Specifiying the collision logic between player and npcs
     @Override
     protected void initPhysics() {
         onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.WITCH, (Entity player, Entity witch) -> {
@@ -152,8 +156,6 @@ public class ShadowedOdysseyApp extends GameApplication {
                 FXGL.inc("Bat",-1);
             }
         });
-
-    
 
         onCollisionBegin(ItemsEntity.EntityType.PLAYER, ItemsEntity.EntityType.KNIGHT, (Entity player, Entity knight) -> {
             Knight thisKnight = knight.getComponent(Knight.class);
@@ -205,6 +207,7 @@ public class ShadowedOdysseyApp extends GameApplication {
        
     }
 
+    // Method responsible of tracking collectible objects in the game
     @Override
     protected void initGameVars(Map<String, Object> vars) {
         vars.put("Apple", 0);
@@ -213,6 +216,8 @@ public class ShadowedOdysseyApp extends GameApplication {
         vars.put("SpouseLife",player.getWifeLife());
     }
 
+
+    // Method responsible of showing the score menu during the game
     @Override
     protected void initUI() {
         Label appleLabel = new Label();
@@ -230,7 +235,7 @@ public class ShadowedOdysseyApp extends GameApplication {
         appleLabel.textProperty().bind(FXGL.getip("Apple").asString(" Apple: %d "));
         batLabel.textProperty().bind(FXGL.getip("Bat").asString(" Bat: %d "));
         moneyLabel.textProperty().bind(FXGL.getip("Money").asString(" Money: %d "));
-        spouseLife.textProperty().bind(FXGL.getip("SpouseLife").asString(" Spouse life: %d "));
+        spouseLife.textProperty().bind(FXGL.getip("SpouseLife").asString(" Wife life: %d "));
         FXGL.addUINode(appleLabel, 20, 10);
         FXGL.addUINode(batLabel,100,10);
         FXGL.addUINode(moneyLabel,160,10);

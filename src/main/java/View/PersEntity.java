@@ -30,6 +30,8 @@ public class PersEntity {
     }
 
 
+    // Function responsible of spawning Player with key bindings listener
+
 
     public void spawnPlayer(int x, int y){
         Entity player = FXGL.entityBuilder()
@@ -93,7 +95,7 @@ public class PersEntity {
     }
 
     
-
+    // Function responsible of spawning NPCs and associate with them the attribute pers that links graphic and logic entity
     public void spawn(int x, int y, ItemsEntity.EntityType EntityType){
         if (EntityType == ItemsEntity.EntityType.WITCH){
            FXGL.entityBuilder()
@@ -107,7 +109,7 @@ public class PersEntity {
         else if (EntityType == ItemsEntity.EntityType.KNIGHT){
             FXGL.entityBuilder()
                 .type(EntityType)
-                .at((x+4)*90, (y * 90))
+                .at((x+4)*90, (y * 90 + 20))
                 .viewWithBBox(pers.getImageName())
                 .collidable()
                 .with(pers)

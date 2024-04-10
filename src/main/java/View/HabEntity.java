@@ -12,6 +12,8 @@ public class HabEntity{
     public Habitat getHabitat(){
         return habitat;
     }
+    
+    // Functions responsible of spawning habitat
 
     public void spawnBlocks(int x, int y, String img, ItemsEntity.EntityType EntityType){
         FXGL.entityBuilder()
@@ -33,8 +35,8 @@ public class HabEntity{
 
     public void spawnHab(int x, int y){
         if(habitat.getType().equals("w")){
-            //spawnBlocks( x, y*90 ,"witchZone.png", ItemsEntity.EntityType.WITCHZONE);
-            //spawnBlocks( x+46, y*90 ,"witchZone.png", ItemsEntity.EntityType.WITCHZONE);
+            spawnBlocks( x, y*90 ,"witchZone.png", ItemsEntity.EntityType.WITCHZONE);
+            spawnBlocks( x+46, y*90 ,"witchZone.png", ItemsEntity.EntityType.WITCHZONE);
             spawnItem( x, y*90-50,"witch2.png", ItemsEntity.EntityType.WITCHBARRIER);
         }else if(habitat.getType().equals("k")){
             spawnBlocks(94*(x+4), (y*90)+50, "knight_fence.png", ItemsEntity.EntityType.KNIGHTFENCE);

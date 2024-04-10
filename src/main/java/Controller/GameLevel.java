@@ -1,10 +1,21 @@
-package Model;
+package Controller;
 
+import java.util.Random;
 
+import Model.AppleBuyer;
+import Model.Carte;
+import Model.Chemin;
+import Model.Diet;
+import Model.Habitat;
+import Model.Knight;
+import Model.Witch;
+
+// This class represents the game level
 public class GameLevel {
 
     // Creating components of  the level
-    private Witch witch1;
+    private Witch witchCarniv;
+    private Witch witchVegan;
     private Knight knight;
 
     private AppleBuyer buyer;
@@ -22,13 +33,23 @@ public class GameLevel {
 
     private Carte map;
 
-    
+    // function responsible of creating a map associated with the level1
     public Carte returnMapLevel1(){
-        witch1= new Witch("Semoua", Diet.CARNIVOR,120,10,30,"witch.png");
+        Random random = new Random();
+        int randomNumber = random.nextInt(2)+1;
+        System.out.println(randomNumber);
+        witchCarniv= new Witch("Semoua", Diet.CARNIVOR,120,2,30,"witch.png");
+        witchVegan=new Witch("Sevoua", Diet.VEGAN,120,2,30,"witch.png");
+        Witch witch;
+        if(randomNumber == 2){
+            witch=witchCarniv;
+        }
+        else{
+            witch=witchVegan;
+        }
         knight= new Knight("Samir", 10, "knight.png");
         buyer = new AppleBuyer("bob", 15, 5,"idle.gif");
-
-        habitat1 = new Habitat("Semoua's store",witch1,"w");
+        habitat1 = new Habitat("Semoua's store",witch,"w");
         habitat2 = new Habitat("bob's store",buyer,"b");
         habitat3 = new Habitat("Samir's borders", knight,"k");
 
