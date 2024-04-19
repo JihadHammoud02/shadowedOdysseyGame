@@ -26,4 +26,7 @@ If you prefer to run the game in an Integrated Development Environment (IDE) lik
 3. Run the file using the appropriate IDE-specific method (e.g., using the "Run" button in VSCode or IntelliJ IDEA).
 
 
+## Game Overview
+
+![image](https://github.com/JihadHammoud02/shadowedOdysseyGame/assets/94748033/75681718-3f37-4800-b4a6-741fe0f5f5d0)
 
